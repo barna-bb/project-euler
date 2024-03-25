@@ -1,4 +1,7 @@
 # Project Euler in C
-<p align="left">
+
+
+## Progress
+<p align="middle">
     <img src="https://projecteuler.net/profile/bbarna00.png" />
 </p>
