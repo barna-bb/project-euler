@@ -1,21 +1,22 @@
-// Problem 3
+// Problem 7
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-#define NUMBER 600851475143
-
-
 int main() {
 
     // --- Sieve of Eratosthenes ---
 
-    const unsigned long long limit = sqrt(NUMBER + 1);
+    // Rosser 1941 - Upper limit of nth prime
+    // pn < nlog + nloglogn for n >= 6
+    const int n = 10001;
+    const unsigned long long limit = n * (log(n) + log(log(n)));
 
+    unsigned long long p = 0;
     unsigned long long i = 0;
     unsigned long long j = 0;
-    unsigned long long m = 0;
+    int m = 0;
 
     // Prime List
     int *primes;
@@ -46,17 +47,18 @@ int main() {
         }
         i++;
     }
-
-    // Find largest prime
-    for (i = 1; i < limit; i++) {
+    
+    // Find nth prime
+    for (i = 0; i < limit; i++) {
         if (primes[i] == 1) {
-            // Factorial
-            if (NUMBER % i == 0) {
-                m = i;
-            }
+            m++;
+        }
+        if (m == n) {
+            p = i;
+            break;
         }
     }
-    printf("%llu", m);
-
+    printf("%llu", p);
+   
     return 0;
 }

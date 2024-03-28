@@ -10,8 +10,14 @@ compile_and_run() {
     # Check dir
     mkdir -p "${compiled_dir}"
 
+    # Check flags
+    local flags=""
+    if [ "$2" == "-lm" ]; then
+        flags="-lm"
+    fi
+
     # Compile
-    gcc "${source_file}" -o "${compiled_file}"
+    gcc "${source_file}" ${flags} -o "${compiled_file}"
 
     # Run
     if [ $? -eq 0 ]; then
@@ -29,4 +35,4 @@ if [ $# -eq 0 ]; then
 fi
 
 # Main
-compile_and_run "$1"
+compile_and_run "$1" "$2"
